@@ -7,21 +7,21 @@ body {
 }
 
 a {
-	color: d0f0c0;
+	color: pink;
 }
 
 h1 {
 	text-align: center;
-	border: solid 1px solid green;
+	border: 1px green solid;
 }
 
 p {
 	font-size: 16px;
-	font-weight: normal;
+	font-weight: bold;
 }
 
 img {
-	width: 877px;
+	width: 777px;
 	height: 500px;
 }
 
