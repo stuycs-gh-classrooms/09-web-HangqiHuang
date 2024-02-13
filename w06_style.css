@@ -3,16 +3,16 @@ html {
 }
 
 body {
-	background-color: #adafac;
+	background-color: #f8fbf6;
 }
 
 a {
-	color: pink;
+	color: #d0f0c0;
 }
 
 h1 {
 	text-align: center;
-	border: 1px green solid;
+	border: 2px green solid;
 }
 
 p {
@@ -26,5 +26,5 @@ img {
 }
 
 ul {
-	text-align: start;
+	font-family: "Arial";
 }
