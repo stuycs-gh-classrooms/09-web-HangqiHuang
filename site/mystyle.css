@@ -1,0 +1,38 @@
+html {
+	font-family: "Times";
+}
+
+body {
+	background-color: rgb(222 236 255);
+	margin-top: 0;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.navigation {
+	display: inline;
+	font-weight: bold;
+	padding: 5px;
+	border-right: 1px solid black;
+}
+
+#n0 {
+	padding: 10px;
+	margin: 0;
+	background-color: rgb(241 238 237);	
+}
+
+#n1 {
+	border-right: none;
+}
+
+h1 {
+	padding: auto;
+	text-align: center;
+	font-size: 4em;
+}
+
+p {
+	font-size: 2em;
+	margin: 8px
+}
