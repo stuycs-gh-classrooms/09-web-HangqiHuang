@@ -13,33 +13,26 @@ body {
 nav {
 	background-color: rgb(241 238 237);
 	border-bottom: 1px solid rgb(232 230 230);
-}
-
-.navigation0 {
-	display: inline;
-	font-weight: bold;
-	padding: 0.5%;
-	margin: 0.5%;
-	border-right: 1px solid black;
-}
-
-.navigation0 a {
-	color: black;
-	text-decoration: none;
-	font-family: "Courier New";
+	padding: 0.2em;
 }
 
 #n0 {
 	margin: 0;
-	padding: 0.8em;
+	padding: 0;
 }
 
-#n1 {
-	border-right: none;
+#n0 li {
+	display: inline;
+	margin: 0.5em;
 }
 
-.navigation0.active {
-	background-color: rgb(219 216 215);
+#n0 li a {
+	color: black;
+	text-decoration: none;
+}
+
+.active {
+	background-color: rgb(222 236 255);
 }
 
 h1 {
@@ -65,7 +58,7 @@ img {
 }
 
 p {
-	font-size: 3em;
+	font-size: 1em;
 	margin: 1em;
 	text-indent: 2em;
 }
