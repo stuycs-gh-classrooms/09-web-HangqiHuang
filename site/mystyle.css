@@ -5,8 +5,6 @@ html {
 body {
 	background-color: rgb(222 236 255);
 	margin-top: 0;
-	margin-left: 0;
-	margin-right: 0;
 	height: auto;
 }
 
@@ -22,13 +20,14 @@ nav {
 #n0 li {
 	display: inline;
 	margin: 0;
-	margin-right: 1em;
+	margin-right: 2em;
 }
 
 #n0 li a {
 	color: black;
 	text-decoration: none;
 	font-size: 1.5em;
+	font-family: monospace;
 }
 
 .active {
@@ -49,6 +48,10 @@ h2 {
 	text-decoration: underline;
 }
 
+h3 {
+	color: red;
+}
+
 img {
 	float: left;
 	margin: 0.8em;
@@ -56,11 +59,26 @@ img {
 
 #img0 {
 	height: 12em;
-	width: 18em;
+}
+
+#img1 {
+	width: 20em;
 }
 
 p {
-	font-size: 1.9em;
+	font-size: 2em;
 	margin: 1em;
 	text-indent: 2em;
+}
+
+#p0 {
+	font-style: italic;
+}
+
+#p1 {
+	font-style: italic;
+}
+
+.citation {
+	font-size: 0.7em;
 }
