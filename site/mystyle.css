@@ -61,7 +61,7 @@ img {
 	height: 12em;
 }
 
-#img1 {
+.img1 {
 	width: 20em;
 }
 
@@ -79,11 +79,7 @@ p {
 	text-indent: 2em;
 }
 
-#p0 {
-	font-style: italic;
-}
-
-#p1 {
+.italicize {
 	font-style: italic;
 }
 
