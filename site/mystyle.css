@@ -3,13 +3,12 @@ html {
 }
 
 body {
-	background-color: rgb(222 236 255);
+	background-color: #f3f9f1;
 	margin-top: 0;
-	height: auto;
 }
 
 nav {
-	background-color: rgb(241 238 237);
+	background-color: #e0f0e9;
 }
 
 #n0 {
@@ -31,8 +30,8 @@ nav {
 }
 
 .active {
-	background-color: red;
-	border: 1em solid red;
+	background-color: #0aa344;
+	border: 1em solid #0aa344;
 	border-radius: 1em;
 }
 
