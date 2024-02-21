@@ -65,6 +65,14 @@ img {
 	width: 20em;
 }
 
+#img2 {
+	width: 20em;
+}
+
+ol li::marker {
+	font-size: 2em;
+}
+
 p {
 	font-size: 2em;
 	margin: 1em;
