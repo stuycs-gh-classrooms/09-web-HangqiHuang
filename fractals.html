@@ -19,7 +19,24 @@
 	<p>
 	The following demonstrates a modified example of the koch_curve using the function M_koch_curve(t, 4, 5, 12).
 	</p>
-	<img src="" alt="A modified dodecagon made of koch curves that's colors of the rainbow.">
+	<img src="M_koch.png" alt="A modified dodecagon made of koch curves that's colors of the rainbow.">
+	<p>
+	The modified koch curve is created using the following code:
+	</p>
+	<pre><code>
+		def M_koch_curve(t, depth, length, side):
+    			s = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
+    			n = [360 / side] * side
+    			i = 0
+    			for e in n:
+        			t.pencolor(s[i])
+        			koch_curve(t, depth, length)
+        			t.lt(e)
+        			if i == 6:
+            				i = 0
+        			else:
+            				i += 1
+	</code><pre>
 
 	<h2>Sierpinski Triangle</h2>
 	<p>
