@@ -54,6 +54,36 @@
 	The modified Sierpinski Triangle is generated using the following code:
 	</p>
 	<pre><code>
+	    def M_sierpinski(t, depth, length, width):
+            if depth == 1:
+                i = random.randrange(3)
+                for e in [0, 1, 2]:
+                    if e == i:
+                        t.pu()
+                    else:
+                        if random.randrange(2) == 0:
+                            t.width(width * 4)
+                    t.fd(length)
+                    t.lt(120)
+                    t.width(width/ 4)
+                    t.pd()
+            else:
+                M_sierpinski(t, depth - 1, length / 2, width)
+                t.pu()
+                t.fd(length / 2)
+                t.pd()
+                M_sierpinski(t, depth - 1, length / 2, width)
+                t.lt(120)
+                t.pu()
+                t.fd(length / 2)
+                t.rt(120)
+                t.pd()
+                M_sierpinski(t, depth - 1, length / 2, width)
+                t.pu()
+                t.rt(120)
+                t.fd(length / 2)
+                t.lt(120)
+                t.pd()
 
 	<h2>Fractal Tree</h2>
 	<p>
