@@ -102,6 +102,28 @@
 	The modified fractal tree is generated using the following code:
 	</p>
 	<pre><code>
+		def M_tree(t, depth, length, angle):
+		    if depth == 1:
+		        t.width(5)
+		        t.pencolor(255, 182, 193)
+		        t.pd()
+		        t.fd(length)
+		        t.pu()
+		        t.bk(length)
+		        t.width(2)
+		    else:
+		        t.pencolor(35, 79, 30)
+		        t.pd()
+		        t.fd(length)
+		        t.lt(angle)
+		        M_tree(t, depth - 1, length, angle)
+		        t.lt(-1 * angle)
+		        M_tree(t, depth - 1, length, angle)
+		        t.lt(-1 * angle)
+		        M_tree(t, depth - 1, length, angle)
+		        t.lt(angle)
+		        t.pu()
+		        t.bk(length)
 
 
 </body>
