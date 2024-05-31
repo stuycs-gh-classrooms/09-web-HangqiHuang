@@ -1,6 +1,7 @@
 #!/usr/bin/python
 print('Content-type: text/html\n')
 
+import cgi
 import cgitb
 cgitb.enable()
 
