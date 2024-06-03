@@ -38,7 +38,7 @@ word = n1[r]
 #other necessary things
 repeats = []
 clue = "_ " * len(word)
-instructions = 'Instruction: This is a Hangman Game(without the Hangman). You will be given a hint and the amount of letters in the word. Your objective is to correctly guess the word in 10 tries. Right guesses will not be counted towards the number of tries. To guess, use the guess func: guess("x"). Replace x with any letter or word. Limit your input to only alphabetical letters and only lowercase letters.<br>' + clue
+instructions = 'Instruction: This is a Hangman Game(without the Hangman). You will be given a hint and the amount of letters in the word. Your objective is to correctly guess the word in 10 tries. Right guesses will not be counted towards the number of tries. To guess, use the guess func: guess("x"). Replace x with any letter or word. Limit your input to only alphabetical letters and only lowercase letters.<br>' + "hint:" + hint
 chance = 10
 
 def index(s, g):
@@ -88,11 +88,19 @@ def guess(s):
     repeats += [s]
 
 #taking inputs from user-end
-if not(data.getvalue('word') == ""):
+if not(data.getvalue('word') == "0"):
     word = data.getvalue('word')
 
 #more html stuff
 html = HTML_HEADER
-html += """<h1>A Game of Hangman</h1>"""
-html += "<p>\n" + instructions + "\n</p>"
+html += """<h1>A Game of Hangman</h1>""" + "\n"
+html += "<p>\n" + instructions + "\n</p>" + "\n"
+html += clue + "\n" + "<br>"
+html += """<form>
+    <input type="text" name="input" value="">
+    <input type="hidden" name="word" value='"""
+html += str(word)
+html += """'>
+    <input type="submit" name="submit" value="Guess!">
+</form>"""
 print(html)
