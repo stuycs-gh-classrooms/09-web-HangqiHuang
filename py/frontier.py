@@ -21,11 +21,13 @@ word = n1[r]
 
 #other necessary things
 repeats = []
+if data.getvalue('input') != "":
+    repeats = data.getvalue('repeats')
 clue = "_ " * len(word)
 if 'word' in data:
     if data.getvalue('word') != '0':
         clue = data.getvalue('clue')
-instructions = 'Instruction: This is a Hangman Game(without the Hangman). You will be given a hint and the amount of letters in the word. Your objective is to correctly guess the word in 10 tries. Right guesses will not be counted towards the number of tries. To guess, use the guess func: guess("x"). Replace x with any letter or word. Limit your input to only alphabetical letters and only lowercase letters.<br>'
+instructions = 'Instruction: This is a Hangman Game(without the Hangman). You will be given a hint and the amount of letters in the word. Your objective is to correctly guess the word in 10 tries. Right guesses will not be counted towards the number of tries. To guess, use the guess func: guess("x"). Replace x with any letter or word. Limit your input to only alphabetical letters and only lowercase letters.\n<br>'
 chance = 10
 
 #guessing
@@ -50,10 +52,10 @@ def guess(s):
         else:
             x = 'Incorrect<br>' + clue + '<br>Chances: ' + chance
     else:
-        if not(s >= 'a' and s <= 'z'):
-            x = 'ERROR'
+        if (not(s >= 'a' and s <= 'z')) or (s == ""):
+            x = 'ERROR<br>' + clue
         elif s in repeats:
-            x= 'REPEAT'
+            x= 'REPEAT<br>' + clue
         elif s in word:
             y = index(word, s)
             for e in y:
@@ -101,12 +103,12 @@ HTML_FOOTER = """</body>
 #more html stuff
 html = HTML_HEADER
 html += """<h1>A Game of Hangman</h1>""" + "\n"
-html += "<p>\n" + instructions + 'hint: ' + hint + "\n</p>" + "\n"
+html += "<p>\n" + instructions + '\nhint: ' + hint + "\n<br>\n"
 if data.getvalue('word') != '0':
     html += check
 else:
     html += clue
-html +=  "\n" + "<br>"
+html += "\n</p>\n"
 html += """<form>
     <input type="text" name="input" value="">
     <input type="hidden" name="word" value='"""
@@ -117,6 +119,9 @@ html += str(hint)
 html += """'>
     <input type="hidden" name="clue" value='"""
 html += str(clue)
+html += """'>
+    <input type="hidden" name="repeats" value='"""
+html += str(repeats)
 html += """'>
     <input type="submit" name="submit" value="Guess!">
 </form>"""
