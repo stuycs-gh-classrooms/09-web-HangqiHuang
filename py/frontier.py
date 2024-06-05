@@ -22,6 +22,9 @@ word = n1[r]
 #other necessary things
 repeats = []
 clue = "_ " * len(word)
+if 'word' in data:
+    if data.getvalue('word') != '0':
+        clue = data.getvalue('clue')
 instructions = 'Instruction: This is a Hangman Game(without the Hangman). You will be given a hint and the amount of letters in the word. Your objective is to correctly guess the word in 10 tries. Right guesses will not be counted towards the number of tries. To guess, use the guess func: guess("x"). Replace x with any letter or word. Limit your input to only alphabetical letters and only lowercase letters.<br>'
 chance = 10
 
@@ -68,13 +71,13 @@ def guess(s):
     return x
 
 #user-end things
+check = ""
 if 'input' in data:
-    clue = guess(data.getvalue('input'))
+    check = guess(data.getvalue('input'))
 if 'word' in data:
     z = data.getvalue('word')
     if z != '0':
         word = z
-        clue = "_ " * len(word)
         hint = data.getvalue('hint')
 
 
@@ -99,7 +102,11 @@ HTML_FOOTER = """</body>
 html = HTML_HEADER
 html += """<h1>A Game of Hangman</h1>""" + "\n"
 html += "<p>\n" + instructions + 'hint: ' + hint + "\n</p>" + "\n"
-html += clue + "\n" + "<br>"
+if data.getvalue('word') != '0':
+    html += check
+else:
+    html += clue
+html +=  "\n" + "<br>"
 html += """<form>
     <input type="text" name="input" value="">
     <input type="hidden" name="word" value='"""
@@ -107,6 +114,9 @@ html += str(word)
 html += """'>
     <input type="hidden" name="hint" value='"""
 html += str(hint)
+html += """'>
+    <input type="hidden" name="clue" value='"""
+html += str(clue)
 html += """'>
     <input type="submit" name="submit" value="Guess!">
 </form>"""
