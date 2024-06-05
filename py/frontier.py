@@ -4,23 +4,6 @@ print('Content-type: text/html\n')
 import cgi#Used to get data from website
 data = cgi.FieldStorage()
 
-#HTML stuff
-HTML_HEADER = """<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <title>A Game of Hangman</title>
-</head>
-
-<body>
-
-"""
-
-HTML_FOOTER = """</body>
-
-</html>"""
-
 
 #Actual code
 import random
@@ -33,7 +16,8 @@ r = random.randrange(len(n0))
 hint = n0[r]
 n1 = word_bank[hint]
 r = random.randrange(len(n1))
-word = n1[r]    
+word = n1[r]
+
 
 #other necessary things
 repeats = []
@@ -41,6 +25,7 @@ clue = "_ " * len(word)
 instructions = 'Instruction: This is a Hangman Game(without the Hangman). You will be given a hint and the amount of letters in the word. Your objective is to correctly guess the word in 10 tries. Right guesses will not be counted towards the number of tries. To guess, use the guess func: guess("x"). Replace x with any letter or word. Limit your input to only alphabetical letters and only lowercase letters.<br>' + "hint:" + hint
 chance = 10
 
+#guessing
 def index(s, g):
     s = list(s)
     i = 0
@@ -58,38 +43,56 @@ def guess(s):
     global chance
     if len(s) > 1:
         if s == word:
-            print(word)
-            print('You Win!')
+            x = word + '<br>You Win!'
         else:
-            print('Incorrect')
-            print(clue)
-            print('Chances:', chance)
+            x = 'Incorrect<br>' + clue + '<br>Chances: ' + chance
     else:
         if not(s >= 'a' and s <= 'z'):
-            print('ERROR')
+            x = 'ERROR'
         elif s in repeats:
-            print('REPEAT')
+            x= 'REPEAT'
         elif s in word:
-            x = index(word, s)
-            for e in x:
+            y = index(word, s)
+            for e in y:
                 clue = clue[:e * 2] + s + clue[(e * 2) + 1:]
-            print(clue)
+            x = clue
         else:
             chance -= 1
             if chance == 0:
-                print('GAME OVER')
-                print('The word is:', word)
+                x = 'GAME OVER<br>The word is: ' + word
             else:
-                print('not in word')
-                print('Chance:', chance)
-                print(clue)
+                x = 'Not in word<br>Chance: ' + str(chance) + '<br>' + clue
         if not("_" in clue):
-            print("You Win!")
+            x = 'You Win!'
     repeats += [s]
+    return x
 
-#taking inputs from user-end
-if not(data.getvalue('word') == "0"):
-    word = data.getvalue('word')
+#user-end things
+if 'input' in data:
+    clue = guess(data.getvalue('input'))
+if 'word' in data:
+    z = data.getvalue('word')
+    if z != 0:
+        word = z
+        clue = "_" * len(word)
+
+
+#HTML stuff
+HTML_HEADER = """<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>A Game of Hangman</title>
+</head>
+
+<body>
+
+"""
+
+HTML_FOOTER = """</body>
+
+</html>"""
 
 #more html stuff
 html = HTML_HEADER
