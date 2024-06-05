@@ -72,13 +72,13 @@ def guess(s):
 
 #user-end things
 check = ""
-if 'input' in data:
-    check = guess(data.getvalue('input'))
 if 'word' in data:
     z = data.getvalue('word')
     if z != '0':
         word = z
         hint = data.getvalue('hint')
+if 'input' in data:
+    check = guess(data.getvalue('input'))
 
 
 #HTML stuff
