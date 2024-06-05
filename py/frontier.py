@@ -72,9 +72,9 @@ if 'input' in data:
     clue = guess(data.getvalue('input'))
 if 'word' in data:
     z = data.getvalue('word')
-    if z != 0:
+    if z != '0':
         word = z
-        clue = "_" * len(word)
+        clue = "_ " * len(word)
 
 
 #HTML stuff
