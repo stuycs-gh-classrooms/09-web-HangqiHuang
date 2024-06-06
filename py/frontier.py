@@ -24,7 +24,7 @@ word = n1[r]
 
 
 #other necessary things
-repeats = ''
+repeats = []
 clue = "_ " * len(word)
 instructions = 'Instruction: This is a Hangman Game(without the Hangman). You will be given a hint and the amount of letters in the word. Your objective is to correctly guess the word in 10 tries. Right guesses will not be counted towards the number of tries. To guess, use the guess func: guess("x"). Replace x with any letter or word. Limit your input to only alphabetical letters and only lowercase letters.\n<br>'
 chance = 10
@@ -49,7 +49,8 @@ def guess(s):
         if s == word:
             x = word + '<br>You Win!'
         else:
-            x = 'Incorrect<br>' + clue + '<br>Chances: ' + chance
+            chance -= 1
+            x = 'Incorrect<br>' + clue + '<br>Chances: ' + str(chance)
     else:
         if (not(s >= 'a' and s <= 'z')) or (s == ""):
             x = 'ERROR<br>' + clue
@@ -67,8 +68,8 @@ def guess(s):
             else:
                 x = 'Not in word<br>Chance: ' + str(chance) + '<br>' + clue
         if not("_" in clue):
-            x = 'You Win!'
-    repeats += [s]
+            x = word + '\n<br>\nYou Win!'
+    repeats += s
     return x
 
 #user-end things
@@ -126,7 +127,7 @@ html += '''">
 html += str(clue)
 html += '''">
     <input type="hidden" name="repeats" value="'''
-html += repeats
+html += str(repeats)
 html += '''">
     <input type="submit" name="submit" value="Guess!">
 </form>
