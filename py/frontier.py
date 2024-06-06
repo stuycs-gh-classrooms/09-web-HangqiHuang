@@ -1,6 +1,10 @@
 #!/usr/bin/python
 print('Content-type: text/html\n')
 
+
+import cgitb
+cgitb.enable()
+
 import cgi#Used to get data from website
 data = cgi.FieldStorage()
 
@@ -21,13 +25,7 @@ word = n1[r]
 
 #other necessary things
 repeats = ''
-if 'input' in data:
-    if data.getvalue('input') != "":
-        repeats = data.getvalue('repeats')
 clue = "_ " * len(word)
-if 'word' in data:
-    if data.getvalue('word') != '0':
-        clue = data.getvalue('clue')
 instructions = 'Instruction: This is a Hangman Game(without the Hangman). You will be given a hint and the amount of letters in the word. Your objective is to correctly guess the word in 10 tries. Right guesses will not be counted towards the number of tries. To guess, use the guess func: guess("x"). Replace x with any letter or word. Limit your input to only alphabetical letters and only lowercase letters.\n<br>'
 chance = 10
 
@@ -80,6 +78,12 @@ if 'word' in data:
     if z != '0':
         word = z
         hint = data.getvalue('hint')
+if 'input' in data:
+    if data.getvalue('input') != "":
+        repeats = data.getvalue('repeats')
+if 'word' in data:
+    if data.getvalue('word') != '0':
+        clue = data.getvalue('clue')
 if 'input' in data:
     check = guess(data.getvalue('input'))
 
