@@ -20,9 +20,10 @@ word = n1[r]
 
 
 #other necessary things
-repeats = []
-if data.getvalue('input') != "":
-    repeats = data.getvalue('repeats')
+repeats = ''
+if 'input' in data:
+    if data.getvalue('input') != "":
+        repeats = data.getvalue('repeats')
 clue = "_ " * len(word)
 if 'word' in data:
     if data.getvalue('word') != '0':
@@ -109,20 +110,23 @@ if data.getvalue('word') != '0':
 else:
     html += clue
 html += "\n</p>\n"
-html += """<form>
+html += '''<form>
     <input type="text" name="input" value="">
-    <input type="hidden" name="word" value='"""
+    <input type="hidden" name="word" value="'''
 html += str(word)
-html += """'>
-    <input type="hidden" name="hint" value='"""
+html += '''">
+    <input type="hidden" name="hint" value="'''
 html += str(hint)
-html += """'>
-    <input type="hidden" name="clue" value='"""
+html += '''">
+    <input type="hidden" name="clue" value="'''
 html += str(clue)
-html += """'>
-    <input type="hidden" name="repeats" value='"""
-html += str(repeats)
-html += """'>
+html += '''">
+    <input type="hidden" name="repeats" value="'''
+html += repeats
+html += '''">
     <input type="submit" name="submit" value="Guess!">
-</form>"""
+</form>
+
+'''
+html += HTML_FOOTER
 print(html)
