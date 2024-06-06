@@ -47,15 +47,15 @@ def guess(s):
     global chance
     if len(s) > 1:
         if s == word:
-            x = word + '<br>You Win!'
+            x = word + '\n<br>\nYou Win!\n<br>\n<a href="frontier.html">Again!</a>'
         else:
             chance -= 1
-            x = 'Incorrect<br>' + clue + '<br>Chances: ' + str(chance)
+            x = 'Incorrect\n<br>\n' + clue + '\n<br>\nChances: ' + str(chance)
     else:
-        if (not(s >= 'a' and s <= 'z')) or (s == ""):
-            x = 'ERROR<br>' + clue
+        if (not(s >= 'a' and s <= 'z')) or (s == ''):
+            x = 'ERROR\n<br>\n' + clue
         elif s in repeats:
-            x= 'REPEAT<br>' + clue
+            x= 'REPEAT\n<br>\n' + clue
         elif s in word:
             y = index(word, s)
             for e in y:
@@ -64,11 +64,11 @@ def guess(s):
         else:
             chance -= 1
             if chance == 0:
-                x = 'GAME OVER<br>The word is: ' + word
+                x = 'GAME OVER\n<br>\nThe word is: ' + word + '\n<br>\n<a href="frontier.html">TRY AGAIN</a>'
             else:
-                x = 'Not in word<br>Chance: ' + str(chance) + '<br>' + clue
+                x = 'Not in word\n<br>\nChance: ' + str(chance) + '\n<br>\n' + clue
         if not("_" in clue):
-            x = word + '\n<br>\nYou Win!'
+            x = word + '\n<br>\nYou Win!\n<br>\n<a href="frontier.html">Again!</a>'
     repeats += s
     return x
 
@@ -79,14 +79,16 @@ if 'word' in data:
     if z != '0':
         word = z
         hint = data.getvalue('hint')
+        clue = data.getvalue('clue')
+        chance = int(data.getvalue('chance'))
 if 'input' in data:
     if data.getvalue('input') != "":
         repeats = data.getvalue('repeats')
 if 'word' in data:
-    if data.getvalue('word') != '0':
-        clue = data.getvalue('clue')
-if 'input' in data:
-    check = guess(data.getvalue('input'))
+    if (data.getvalue('word') != '0') and not('input' in data):
+        check = 'ERROR\n<br>\n' + clue
+    elif 'input' in data:
+        check = guess(data.getvalue('input'))
 
 
 #HTML stuff
@@ -128,6 +130,9 @@ html += str(clue)
 html += '''">
     <input type="hidden" name="repeats" value="'''
 html += str(repeats)
+html += '''">
+    <input type="hidden" name="chance" value="'''
+html += str(chance)
 html += '''">
     <input type="submit" name="submit" value="Guess!">
 </form>
